@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
@@ -21,7 +23,7 @@ export default function SignupPage() {
       if (error) throw error;
       router.push('/auth/login');
     } catch (error) {
-      setError(error.message);
+      setError(error instanceof Error ? error.message : 'An unexpected error occurred');
     }
   };
 

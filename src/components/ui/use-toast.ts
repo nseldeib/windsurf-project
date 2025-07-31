@@ -1,10 +1,16 @@
 import * as React from "react"
 
 import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from "@/components/ui/toast"
-import { type ToastActionElement, type ToastProps } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
+
+type ToastProps = {
+  variant?: "default" | "destructive"
+  onOpenChange?: (open: boolean) => void
+  open?: boolean
+  onDismiss?: () => void
+}
 
 type ToastAction = "add" | "update" | "dismiss"
 
@@ -12,15 +18,8 @@ type Toast = Omit<ToastProps, "onOpenChange"> & {
   id: string
   title?: React.ReactNode
   description?: React.ReactNode
-  action?: ToastActionElement
+  action?: React.ReactNode
 }
-
-const actionTypes = {
-  ADD_TOAST: "add" as const,
-  UPDATE_TOAST: "update" as const,
-  DISMISS_TOAST: "dismiss" as const,
-  DISMISS_TOASTS: "dismiss_toasts" as const,
-} as const
 
 let count = 0
 
@@ -30,16 +29,16 @@ function genId() {
 }
 
 type Action = {
-  type: typeof actionTypes.ADD_TOAST
+  type: "add"
   toast: Toast
 } | {
-  type: typeof actionTypes.UPDATE_TOAST
+  type: "update"
   toast: Partial<Toast>
 } | {
-  type: typeof actionTypes.DISMISS_TOAST
+  type: "dismiss"
   toastId?: Toast["id"]
 } | {
-  type: typeof actionTypes.DISMISS_TOASTS
+  type: "dismiss_toasts"
 }
 
 interface State {
@@ -48,7 +47,7 @@ interface State {
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
 
-const addToRemoveQueue = (toastId: string) => {
+function addToRemoveQueue(toastId: string) {
   if (toastTimeouts.has(toastId)) {
     return
   }
@@ -56,7 +55,7 @@ const addToRemoveQueue = (toastId: string) => {
   const timeout = setTimeout(() => {
     toastTimeouts.delete(toastId)
     dispatch({
-      type: "dismiss_toast",
+      type: "dismiss",
       toastId: toastId,
     })
   }, TOAST_REMOVE_DELAY)
@@ -101,7 +100,7 @@ export const reducer = (state: State, action: Action): State => {
     }
 
     case "dismiss_toasts": {
-      toasts.forEach((toast) => {
+      state.toasts.forEach((toast) => {
         if (toastTimeouts.has(toast.id)) {
           clearTimeout(toastTimeouts.get(toast.id))
         }

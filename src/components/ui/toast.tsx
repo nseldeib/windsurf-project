@@ -1,6 +1,5 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -21,10 +20,7 @@ const toastVariants = cva(
   }
 )
 
-const Toast = React.forwardRef<
-  React.ElementRef["div"],
-  React.ComponentPropsWithoutRef<"div"> & VariantProps<typeof toastVariants>
->(({ className, variant, ...props }, ref) => (
+const Toast = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<"div"> & VariantProps<typeof toastVariants>>(({ className, variant, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(toastVariants({ variant }), className)}
@@ -33,10 +29,7 @@ const Toast = React.forwardRef<
 ))
 Toast.displayName = "Toast"
 
-const ToastTitle = React.forwardRef<
-  React.ElementRef["div"],
-  React.ComponentPropsWithoutRef["div"]
->(({ className, ...props }, ref) => (
+const ToastTitle = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<"div">>(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn("text-sm font-semibold", className)}
@@ -45,10 +38,7 @@ const ToastTitle = React.forwardRef<
 ))
 ToastTitle.displayName = "ToastTitle"
 
-const ToastDescription = React.forwardRef<
-  React.ElementRef["div"],
-  React.ComponentPropsWithoutRef["div"]
->(({ className, ...props }, ref) => (
+const ToastDescription = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<"div">>(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn("text-sm opacity-90", className)}
@@ -57,10 +47,7 @@ const ToastDescription = React.forwardRef<
 ))
 ToastDescription.displayName = "ToastDescription"
 
-const ToastClose = React.forwardRef<
-  React.ElementRef["button"],
-  React.ComponentPropsWithoutRef["button"]
->(({ className, ...props }, ref) => (
+const ToastClose = React.forwardRef<HTMLButtonElement, React.ComponentPropsWithoutRef<"button">>(({ className, ...props }, ref) => (
   <button
     ref={ref}
     className={cn(
@@ -73,10 +60,7 @@ const ToastClose = React.forwardRef<
 ))
 ToastClose.displayName = "ToastClose"
 
-const ToastProvider = React.forwardRef<
-  React.ElementRef["div"],
-  React.ComponentPropsWithoutRef["div"]
->(({ className, children, ...props }, ref) => (
+const ToastProvider = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<"div">>(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
     className={cn("fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]", className)}
@@ -87,10 +71,7 @@ const ToastProvider = React.forwardRef<
 ))
 ToastProvider.displayName = "ToastProvider"
 
-const ToastViewport = React.forwardRef<
-  React.ElementRef["div"],
-  React.ComponentPropsWithoutRef["div"]
->(({ className, ...props }, ref) => (
+const ToastViewport = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<"div">>(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
@@ -103,8 +84,6 @@ const ToastViewport = React.forwardRef<
 ToastViewport.displayName = "ToastViewport"
 
 export {
-  type Toast,
-  type ToastProps,
   ToastProvider,
   ToastViewport,
   Toast,

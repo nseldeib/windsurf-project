@@ -5,7 +5,9 @@ const nextConfig = {
     domains: ['avatars.githubusercontent.com'], // Add any image domains you need
   },
   experimental: {
-    serverActions: true,
+    serverActions: {
+      allowedOrigins: ['http://localhost:3000', 'https://*.vercel.app']
+    },
   },
   async headers() {
     return [

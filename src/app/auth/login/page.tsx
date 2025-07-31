@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
@@ -140,7 +142,7 @@ export default function LoginPage() {
 
         <div className="text-sm">
           <a href="/auth/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
-            Don't have an account? Sign up
+            Don&apos;t have an account? Sign up
           </a>
         </div>
       </div>
