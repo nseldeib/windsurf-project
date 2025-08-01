@@ -63,12 +63,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-[#1a1a1a] p-8 rounded-lg border border-[#3a3a3a]">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-[#ededed]">
-            Sign in to your account
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-4">
+      <div className="w-full max-w-md mx-auto bg-[#1a1a1a] p-8 rounded-lg border border-[#3a3a3a] shadow-lg">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-[#ededed] font-mono">
+            ┌─ TERMINAL LOGIN ─┐
           </h2>
+          <p className="mt-2 text-[#00ff00] font-mono text-sm">$ auth --login</p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           {error && (
@@ -76,7 +77,7 @@ export default function LoginPage() {
               {error}
             </div>
           )}
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="space-y-4">
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
@@ -88,7 +89,7 @@ export default function LoginPage() {
                 autoComplete="email"
                 required
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-[#3a3a3a] bg-[#2a2a2a] placeholder-[#9a9a9a] text-[#ededed] rounded-t-md focus:outline-none focus:ring-[#6a6a6a] focus:border-[#6a6a6a] focus:z-10 sm:text-sm"
+                className="w-full px-4 py-3 bg-[#2a2a2a] border border-[#00ff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#00ff00] focus:border-[#00ff00]"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -105,7 +106,7 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 required
                 minLength={8}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-[#3a3a3a] bg-[#2a2a2a] placeholder-[#9a9a9a] text-[#ededed] rounded-b-md focus:outline-none focus:ring-[#6a6a6a] focus:border-[#6a6a6a] focus:z-10 sm:text-sm"
+                className="w-full px-4 py-3 bg-[#2a2a2a] border border-[#00ff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#00ff00] focus:border-[#00ff00]"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -123,7 +124,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-[#3a3a3a] text-sm font-medium rounded-md text-[#ededed] bg-[#2a2a2a] hover:bg-[#3a3a3a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6a6a6a] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 px-6 bg-[#00ff00] text-[#0a0a0a] font-mono font-bold rounded hover:bg-[#00cc00] focus:outline-none focus:ring-2 focus:ring-[#00ff00] focus:ring-offset-2 focus:ring-offset-[#1a1a1a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {isLoading ? (
                 <>
@@ -140,9 +141,9 @@ export default function LoginPage() {
           </div>
         </form>
 
-        <div className="text-sm">
-          <a href="/auth/signup" className="font-medium text-[#6a6a6a] hover:text-[#ededed]">
-            Don&apos;t have an account? Sign up
+        <div className="text-center mt-6">
+          <a href="/auth/signup" className="text-[#00ff00] hover:text-[#ffffff] font-mono text-sm">
+            &gt; Create new account
           </a>
         </div>
       </div>
