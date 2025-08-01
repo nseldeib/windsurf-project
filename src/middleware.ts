@@ -1,16 +1,28 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { createClient } from '@supabase/ssr';
-import { createBrowserClient } from '@supabase/ssr';
-
-// Create a Supabase client instance
-const supabase = createClient({
-  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-});
+import { createServerClient } from '@supabase/ssr';
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
+  
+  // Create a Supabase client configured to use the request/response
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return request.cookies.get(name)?.value;
+        },
+        set(name: string, value: string, options: any) {
+          response.cookies.set({ name, value, ...options });
+        },
+        remove(name: string, options: any) {
+          response.cookies.set({ name, value: '', ...options });
+        },
+      },
+    }
+  );
   
   // Get session from Supabase client
   const { data: { session } } = await supabase.auth.getSession();
@@ -31,11 +43,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/auth/login', request.url));
     }
     
-    // Add session refresh
-    const { data: { session: refreshedSession } } = await supabase.auth.refreshSession();
-    if (refreshedSession) {
-      await supabase.auth.setSession(refreshedSession);
-    }
+    // Session is handled automatically by the middleware client
   }
   
   // Update rate limit cookie
