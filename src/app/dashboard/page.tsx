@@ -116,8 +116,8 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="h-screen w-full bg-[#0a0a0a] p-8">
+      <div className="h-full flex flex-col">
       {/* Terminal Header */}
       <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-t-lg">
         <div className="bg-[#00ff00] text-[#0a0a0a] px-4 py-2 font-mono font-bold">
@@ -181,13 +181,13 @@ export default function DashboardPage() {
       </div>
 
       {/* Kanban Columns */}
-      <div className="grid grid-cols-3 gap-4 mt-4">
+      <div className="flex-1 grid grid-cols-3 gap-6 mt-4">
         {/* TODO Column */}
         <div className="bg-[#1a1a1a] border border-[#ff0000] rounded">
           <div className="bg-[#ff0000] text-[#ffffff] px-4 py-2 font-mono font-bold">
             ┌─ TODO ({getStatusNotes('todo').length}) ─┐
           </div>
-          <div className="p-3 space-y-2 min-h-[300px]">
+          <div className="p-4 space-y-3 h-full overflow-y-auto">
             {getStatusNotes('todo').map(note => (
               <div key={note.id} className="bg-[#2a2a2a] border border-[#666666] p-3 rounded">
                 <div className="text-[#ffffff] font-mono font-bold mb-1">{note.title}</div>
@@ -224,7 +224,7 @@ export default function DashboardPage() {
           <div className="bg-[#ffff00] text-[#0a0a0a] px-4 py-2 font-mono font-bold">
             ┌─ IN PROGRESS ({getStatusNotes('in-progress').length}) ─┐
           </div>
-          <div className="p-3 space-y-2 min-h-[300px]">
+          <div className="p-4 space-y-3 h-full overflow-y-auto">
             {getStatusNotes('in-progress').map(note => (
               <div key={note.id} className="bg-[#2a2a2a] border border-[#666666] p-3 rounded">
                 <div className="text-[#ffffff] font-mono font-bold mb-1">{note.title}</div>
@@ -261,7 +261,7 @@ export default function DashboardPage() {
           <div className="bg-[#00ff00] text-[#0a0a0a] px-4 py-2 font-mono font-bold">
             ┌─ DONE ({getStatusNotes('done').length}) ─┐
           </div>
-          <div className="p-3 space-y-2 min-h-[300px]">
+          <div className="p-4 space-y-3 h-full overflow-y-auto">
             {getStatusNotes('done').map(note => (
               <div key={note.id} className="bg-[#2a2a2a] border border-[#666666] p-3 rounded">
                 <div className="text-[#ffffff] font-mono font-bold mb-1">{note.title}</div>
@@ -295,7 +295,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Terminal Footer */}
-      <div className="mt-4 bg-[#1a1a1a] border border-[#00ff00] rounded-b-lg p-3">
+      <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-b-lg p-4">
         <div className="text-[#00ff00] font-mono text-sm">
           <span className="text-[#00ff00]">$</span> <span className="text-[#888888]">Status: {notes.length} total notes | Ready for input...</span>
         </div>

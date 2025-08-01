@@ -63,67 +63,84 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-8">
-      <div className="w-full max-w-md mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-[#ededed] font-mono mb-4">
-            ┌─ TERMINAL LOGIN ─┐
+    <div className="h-screen w-full bg-[#0a0a0a] grid grid-cols-2">
+      {/* Left side - Info */}
+      <div className="flex items-center justify-center p-16 bg-[#111111]">
+        <div className="text-left">
+          <h1 className="text-5xl font-bold text-[#ededed] font-mono mb-6 leading-tight">
+            ┌─ TERMINAL<br/>
+            &nbsp;&nbsp;&nbsp;ACCESS ─┐
           </h1>
-          <p className="text-[#00ff00] font-mono mb-2">$ auth --login</p>
-          <div className="text-[#cccccc] font-mono text-sm">
-            <div>Welcome back, operator</div>
+          <p className="text-[#00ff00] font-mono text-2xl mb-4">$ auth --login</p>
+          <div className="text-[#cccccc] font-mono text-lg">
+            <div className="mb-2">Welcome back, operator</div>
+            <div className="text-[#888888]">Enter your credentials to access the system</div>
           </div>
         </div>
-        
-        <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#00ff00] shadow-lg">
-          <form className="space-y-4" onSubmit={handleLogin}>
-            {error && (
-              <div className="text-[#ff0000] text-sm mb-4">
-                {error}
+      </div>
+      
+      {/* Right side - Login Form */}
+      <div className="flex items-center justify-center p-16">
+        <div className="w-full max-w-lg">
+          <div className="bg-[#1a1a1a] p-8 rounded-lg border border-[#00ff00] shadow-2xl">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-[#ededed] font-mono mb-2">
+                LOGIN
+              </h2>
+              <p className="text-[#00ff00] font-mono">$ accessing system...</p>
+            </div>
+            
+            <form className="space-y-6" onSubmit={handleLogin}>
+              {error && (
+                <div className="text-[#ff0000] text-sm mb-4 text-center">
+                  {error}
+                </div>
+              )}
+              
+              <div>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  className="w-full px-4 py-4 bg-[#2a2a2a] border border-[#00ff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#00ff00] text-lg"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
-            )}
-            <div>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                className="w-full px-4 py-3 bg-[#2a2a2a] border border-[#00ff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#00ff00]"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                minLength={8}
-                className="w-full px-4 py-3 bg-[#2a2a2a] border border-[#00ff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#00ff00]"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+              
+              <div>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  minLength={8}
+                  className="w-full px-4 py-4 bg-[#2a2a2a] border border-[#00ff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#00ff00] text-lg"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-3 px-6 bg-[#00ff00] text-[#0a0a0a] font-mono font-bold rounded hover:bg-[#00cc00] disabled:opacity-50 transition-colors"
-            >
-              {isLoading ? 'ACCESSING...' : '[ENTER SYSTEM]'}
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full py-4 px-6 bg-[#00ff00] text-[#0a0a0a] font-mono font-bold rounded hover:bg-[#00cc00] disabled:opacity-50 transition-all transform hover:scale-105 text-lg"
+              >
+                {isLoading ? 'ACCESSING...' : '[ENTER SYSTEM]'}
+              </button>
+            </form>
 
-          <div className="text-center mt-4">
-            <a href="/auth/signup" className="text-[#00ff00] hover:text-[#ffffff] font-mono text-sm">
-              &gt; Create new account
-            </a>
+            <div className="text-center mt-6">
+              <a href="/auth/signup" className="text-[#00ff00] hover:text-[#ffffff] font-mono">
+                &gt; Create new account
+              </a>
+            </div>
           </div>
         </div>
       </div>
