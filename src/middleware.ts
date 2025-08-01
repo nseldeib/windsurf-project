@@ -1,14 +1,18 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
+import { createClient } from '@supabase/ssr';
+import { createBrowserClient } from '@supabase/ssr';
+
+// Create a Supabase client instance
+const supabase = createClient({
+  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+});
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
-  const supabase = createMiddlewareClient({
-  req: request,
-  res: response
-});
   
+  // Get session from Supabase client
   const { data: { session } } = await supabase.auth.getSession();
   
   // Add rate limiting
