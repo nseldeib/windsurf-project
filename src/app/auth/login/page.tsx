@@ -88,7 +88,7 @@ export default function LoginPage() {
                 autoComplete="email"
                 required
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-[#3a3a3a] placeholder-[#ededed] text-[#ededed] rounded-t-md focus:outline-none focus:ring-[#6a6a6a] focus:border-[#6a6a6a] focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-[#3a3a3a] bg-[#2a2a2a] placeholder-[#9a9a9a] text-[#ededed] rounded-t-md focus:outline-none focus:ring-[#6a6a6a] focus:border-[#6a6a6a] focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -105,7 +105,7 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 required
                 minLength={8}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-[#3a3a3a] placeholder-[#ededed] text-[#ededed] rounded-b-md focus:outline-none focus:ring-[#6a6a6a] focus:border-[#6a6a6a] focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-[#3a3a3a] bg-[#2a2a2a] placeholder-[#9a9a9a] text-[#ededed] rounded-b-md focus:outline-none focus:ring-[#6a6a6a] focus:border-[#6a6a6a] focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
