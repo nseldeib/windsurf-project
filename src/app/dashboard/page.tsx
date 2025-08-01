@@ -116,27 +116,28 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-4">
+    <div className="min-h-screen bg-[#0a0a0a] p-4 lg:p-8">
+      <div className="max-w-7xl mx-auto">
       {/* Terminal Header */}
       <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-t-lg">
         <div className="bg-[#00ff00] text-[#0a0a0a] px-4 py-2 font-mono font-bold">
           ┌─ TERMINAL KANBAN v1.0 ─ {session.user.email} ─┐
         </div>
-        <div className="p-4 text-[#00ff00] font-mono">
-          <div className="flex justify-between items-center mb-4">
+        <div className="p-4 lg:p-6 text-[#00ff00] font-mono">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-4 gap-4">
             <div>
               <span className="text-[#00ff00]">$</span> <span className="text-[#ffffff]">kanban --status</span>
             </div>
             <div className="flex gap-4">
               <button
                 onClick={() => setIsAddingNote(!isAddingNote)}
-                className="text-[#ffff00] hover:text-[#ffffff] border border-[#ffff00] px-3 py-1 rounded"
+                className="text-[#ffff00] hover:text-[#ffffff] border border-[#ffff00] px-4 py-2 rounded transition-colors hover:bg-[#ffff00] hover:text-[#0a0a0a]"
               >
                 [+ ADD NOTE]
               </button>
               <button
                 onClick={handleLogout}
-                className="text-[#ff0000] hover:text-[#ffffff] border border-[#ff0000] px-3 py-1 rounded"
+                className="text-[#ff0000] hover:text-[#ffffff] border border-[#ff0000] px-4 py-2 rounded transition-colors hover:bg-[#ff0000] hover:text-[#0a0a0a]"
               >
                 [LOGOUT]
               </button>
@@ -180,13 +181,13 @@ export default function DashboardPage() {
       </div>
 
       {/* Kanban Columns */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6 mt-6">
         {/* TODO Column */}
         <div className="bg-[#1a1a1a] border border-[#ff0000] rounded">
           <div className="bg-[#ff0000] text-[#ffffff] px-4 py-2 font-mono font-bold">
             ┌─ TODO ({getStatusNotes('todo').length}) ─┐
           </div>
-          <div className="p-4 space-y-3 min-h-[400px]">
+          <div className="p-4 space-y-3 min-h-[300px] lg:min-h-[400px]">
             {getStatusNotes('todo').map(note => (
               <div key={note.id} className="bg-[#2a2a2a] border border-[#666666] p-3 rounded">
                 <div className="text-[#ffffff] font-mono font-bold mb-1">{note.title}</div>
@@ -223,7 +224,7 @@ export default function DashboardPage() {
           <div className="bg-[#ffff00] text-[#0a0a0a] px-4 py-2 font-mono font-bold">
             ┌─ IN PROGRESS ({getStatusNotes('in-progress').length}) ─┐
           </div>
-          <div className="p-4 space-y-3 min-h-[400px]">
+          <div className="p-4 space-y-3 min-h-[300px] lg:min-h-[400px]">
             {getStatusNotes('in-progress').map(note => (
               <div key={note.id} className="bg-[#2a2a2a] border border-[#666666] p-3 rounded">
                 <div className="text-[#ffffff] font-mono font-bold mb-1">{note.title}</div>
@@ -260,7 +261,7 @@ export default function DashboardPage() {
           <div className="bg-[#00ff00] text-[#0a0a0a] px-4 py-2 font-mono font-bold">
             ┌─ DONE ({getStatusNotes('done').length}) ─┐
           </div>
-          <div className="p-4 space-y-3 min-h-[400px]">
+          <div className="p-4 space-y-3 min-h-[300px] lg:min-h-[400px]">
             {getStatusNotes('done').map(note => (
               <div key={note.id} className="bg-[#2a2a2a] border border-[#666666] p-3 rounded">
                 <div className="text-[#ffffff] font-mono font-bold mb-1">{note.title}</div>
@@ -294,10 +295,11 @@ export default function DashboardPage() {
       </div>
 
       {/* Terminal Footer */}
-      <div className="mt-4 bg-[#1a1a1a] border border-[#00ff00] rounded-b-lg p-4">
+      <div className="mt-6 bg-[#1a1a1a] border border-[#00ff00] rounded-b-lg p-4 lg:p-6">
         <div className="text-[#00ff00] font-mono text-sm">
           <span className="text-[#00ff00]">$</span> <span className="text-[#888888]">Status: {notes.length} total notes | Ready for input...</span>
         </div>
+      </div>
       </div>
     </div>
   );
