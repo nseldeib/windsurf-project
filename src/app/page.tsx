@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-      <div className="w-full max-w-6xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center laptop-full-width">
+      <div className="w-full max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 lg:px-8 py-8 laptop-centered">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#ededed] font-mono mb-6">
             ┌─ WINDSURF PROJECT ─┐
@@ -15,7 +15,7 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="max-w-md mx-auto bg-[#1a1a1a] p-8 rounded-lg border border-[#00ff00] shadow-2xl">
+        <div className="max-w-md lg:max-w-lg xl:max-w-xl mx-auto bg-[#1a1a1a] p-8 lg:p-10 rounded-lg border border-[#00ff00] shadow-2xl">
           <div className="text-center mb-8">
             <h2 className="text-xl font-bold text-[#ededed] font-mono mb-2">
               ACCESS TERMINAL

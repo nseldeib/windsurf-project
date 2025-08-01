@@ -28,8 +28,8 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-      <div className="w-full max-w-6xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center laptop-full-width">
+      <div className="w-full max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 lg:px-8 py-8 laptop-centered">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#ededed] font-mono mb-6">
             ┌─ JOIN THE SYSTEM ─┐
@@ -40,7 +40,7 @@ export default function SignupPage() {
           </div>
         </div>
         
-        <div className="max-w-lg mx-auto bg-[#1a1a1a] p-8 rounded-lg border border-[#ffff00] shadow-2xl">
+        <div className="max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-[#1a1a1a] p-8 lg:p-10 rounded-lg border border-[#ffff00] shadow-2xl">
           <div className="text-center mb-8">
             <h2 className="text-xl font-bold text-[#ededed] font-mono mb-2">
               REGISTER
