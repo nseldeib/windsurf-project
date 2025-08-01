@@ -117,13 +117,13 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] p-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
       {/* Terminal Header */}
       <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-t-lg">
-        <div className="bg-[#00ff00] text-[#0a0a0a] px-4 py-2 font-mono font-bold">
+        <div className="bg-[#00ff00] text-[#0a0a0a] px-3 py-2 font-mono font-bold text-sm">
           ┌─ TERMINAL KANBAN v1.0 ─ {session.user.email} ─┐
         </div>
-        <div className="p-4 text-[#00ff00] font-mono">
+        <div className="p-3 text-[#00ff00] font-mono text-sm">
           <div className="flex justify-between items-center mb-4">
             <div>
               <span className="text-[#00ff00]">$</span> <span className="text-[#ffffff]">kanban --status</span>
@@ -131,13 +131,13 @@ export default function DashboardPage() {
             <div className="flex gap-4">
               <button
                 onClick={() => setIsAddingNote(!isAddingNote)}
-                className="text-[#ffff00] hover:text-[#ffffff] border border-[#ffff00] px-3 py-1 rounded text-sm"
+                className="text-[#ffff00] hover:text-[#ffffff] border border-[#ffff00] px-2 py-1 rounded text-xs"
               >
                 [+ ADD]
               </button>
               <button
                 onClick={handleLogout}
-                className="text-[#ff0000] hover:text-[#ffffff] border border-[#ff0000] px-3 py-1 rounded text-sm"
+                className="text-[#ff0000] hover:text-[#ffffff] border border-[#ff0000] px-2 py-1 rounded text-xs"
               >
                 [LOGOUT]
               </button>
@@ -146,20 +146,20 @@ export default function DashboardPage() {
           
           {/* Add Note Form */}
           {isAddingNote && (
-            <div className="bg-[#2a2a2a] border border-[#ffff00] p-4 mb-4 rounded">
+            <div className="bg-[#2a2a2a] border border-[#ffff00] p-3 mb-3 rounded">
               <div className="text-[#ffff00] mb-2">┌─ NEW NOTE ─┐</div>
               <input
                 type="text"
                 placeholder="Title..."
                 value={newNote.title}
                 onChange={(e) => setNewNote({...newNote, title: e.target.value})}
-                className="w-full bg-[#0a0a0a] text-[#00ff00] border border-[#00ff00] p-2 mb-2 font-mono"
+                className="w-full bg-[#0a0a0a] text-[#00ff00] border border-[#00ff00] p-2 mb-2 font-mono text-sm"
               />
               <textarea
                 placeholder="Content..."
                 value={newNote.content}
                 onChange={(e) => setNewNote({...newNote, content: e.target.value})}
-                className="w-full bg-[#0a0a0a] text-[#00ff00] border border-[#00ff00] p-2 mb-2 font-mono h-20 resize-none"
+                className="w-full bg-[#0a0a0a] text-[#00ff00] border border-[#00ff00] p-2 mb-2 font-mono text-sm h-16 resize-none"
               />
               <div className="flex gap-2">
                 <button

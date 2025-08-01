@@ -29,21 +29,21 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-2xl mx-auto">
+      <div className="w-full max-w-lg mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-5xl md:text-6xl font-bold text-[#ededed] font-mono mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#ededed] font-mono mb-3">
             ┌─ TERMINAL SIGNUP ─┐
           </h1>
-          <p className="text-[#ffff00] font-mono text-xl mb-2">$ auth --register</p>
+          <p className="text-[#ffff00] font-mono text-lg mb-2">$ auth --register</p>
           <div className="text-[#cccccc] font-mono">
             <div>Initialize new operator</div>
           </div>
         </div>
         
         {/* Signup Form */}
-        <div className="bg-[#1a1a1a] p-8 rounded-lg border border-[#ffff00] shadow-2xl">
-          <form className="space-y-6" onSubmit={handleSignup}>
+        <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#ffff00] shadow-2xl">
+          <form className="space-y-4" onSubmit={handleSignup}>
             {error && (
               <div className="text-[#ff0000] text-sm text-center mb-4">
                 {error}
@@ -57,7 +57,7 @@ export default function SignupPage() {
                 type="email"
                 autoComplete="email"
                 required
-                className="w-full px-4 py-4 bg-[#2a2a2a] border border-[#ffff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#ffff00] text-lg"
+                className="w-full px-3 py-3 bg-[#2a2a2a] border border-[#ffff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#ffff00]"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -71,7 +71,7 @@ export default function SignupPage() {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="w-full px-4 py-4 bg-[#2a2a2a] border border-[#ffff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#ffff00] text-lg"
+                className="w-full px-3 py-3 bg-[#2a2a2a] border border-[#ffff00] text-[#ededed] placeholder-[#9a9a9a] rounded font-mono focus:outline-none focus:ring-2 focus:ring-[#ffff00]"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -80,7 +80,7 @@ export default function SignupPage() {
 
             <button
               type="submit"
-              className="w-full py-4 px-8 bg-[#ffff00] text-[#0a0a0a] font-mono font-bold rounded hover:bg-[#cccc00] transition-all text-lg"
+              className="w-full py-3 px-6 bg-[#ffff00] text-[#0a0a0a] font-mono font-bold rounded hover:bg-[#cccc00] transition-all"
             >
               [CREATE ACCOUNT]
             </button>
