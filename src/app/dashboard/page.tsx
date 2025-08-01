@@ -36,19 +36,19 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div className="p-6 bg-white border-b border-gray-200">
-            <h1 className="text-2xl font-bold mb-4">Welcome to your Dashboard</h1>
+        <div className="bg-[#1a1a1a] overflow-hidden shadow-sm sm:rounded-lg">
+          <div className="p-6 border-b border-[#3a3a3a]">
+            <h1 className="text-2xl font-bold mb-4 text-[#ededed]">Welcome to your Dashboard</h1>
             <div className="mb-4">
-              <p className="text-gray-600">
+              <p className="text-[#ededed]">
                 You are logged in as: {session.user.email}
               </p>
             </div>
             <button
               onClick={handleLogout}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-[#ff0000] hover:bg-[#cc0000] text-[#ededed] font-bold py-2 px-4 rounded"
             >
               Logout
             </button>
