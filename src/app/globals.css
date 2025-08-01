@@ -8,31 +8,9 @@
   padding: 0;
 }
 
-html,
 body {
-  width: 100%;
-  height: 100%;
   background: #0a0a0a;
   color: #ededed;
   font-family: 'Courier New', Monaco, monospace;
   line-height: 1.6;
-}
-
-#__next {
-  width: 100%;
-  min-height: 100vh;
-}
-
-/* Explicit laptop-optimized centering */
-@media (min-width: 1024px) {
-  .laptop-centered {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  
-  .laptop-full-width {
-    width: 100vw;
-    max-width: none;
-  }
 }
