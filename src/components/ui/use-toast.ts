@@ -171,7 +171,11 @@ function useToast() {
         listeners.splice(index, 1)
       }
     }
-  }, [state])
+    // We only want to register the listener once on mount. Including `state`
+    // in the dependency array would add a new listener on every state change
+    // which leads to multiple duplicated callbacks and potential memory leaks.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return {
     ...state,
