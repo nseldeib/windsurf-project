@@ -235,7 +235,7 @@ export default function DashboardPage() {
                       onClick={() => moveNote(note.id, 'todo')}
                       className="text-[#ff0000] hover:text-[#ffffff]"
                     >
-                      [←TODO]
+                      [← TODO]
                     </button>
                     <button
                       onClick={() => moveNote(note.id, 'done')}
@@ -272,7 +272,7 @@ export default function DashboardPage() {
                       onClick={() => moveNote(note.id, 'todo')}
                       className="text-[#ff0000] hover:text-[#ffffff]"
                     >
-                      [←TODO]
+                      [← TODO]
                     </button>
                     <button
                       onClick={() => moveNote(note.id, 'in-progress')}
