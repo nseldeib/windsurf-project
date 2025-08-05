@@ -15,16 +15,8 @@ html, body {
   overflow-x: hidden;
 }
 
-
-/* Clean terminal styling without layout interference */
+/* Clean terminal styling */
 .terminal-content {
   font-family: 'Courier New', Monaco, monospace;
   line-height: 1.6;
-}
-
-/* Ensure proper centering on all screen sizes */
-@media (min-width: 1536px) {
-  .terminal-content {
-    max-width: 1400px;
-  }
 }

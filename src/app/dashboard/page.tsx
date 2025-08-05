@@ -116,8 +116,8 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      <div className="terminal-content container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-[#0a0a0a] flex justify-center">
+      <div className="terminal-content w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-6">
         
         {/* Terminal Header */}
         <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-t-lg">
