@@ -99,12 +99,18 @@ export default function DashboardPage() {
   }, [session]);
 
   /**
-   * Handle user logout
+   * Handle user logout with error handling
    * Signs out from Supabase and redirects to login page
    */
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push('/auth/login');
+    try {
+      await supabase.auth.signOut();
+      router.push('/auth/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+      // Force redirect even if logout fails
+      router.push('/auth/login');
+    }
   };
 
   /**
@@ -147,10 +153,24 @@ export default function DashboardPage() {
     setNotes(notes.filter(note => note.id !== noteId));
   };
 
+  // Enhanced loading state with terminal styling
   if (!session) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="text-[#00ff00] font-mono">Loading...</div>
+        <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-lg p-8 text-center">
+          <div className="text-[#00ff00] font-mono mb-4">
+            <div className="mb-2">┌─ HACK BOARD ─┐</div>
+            <div className="text-sm">🔄 INITIALIZING SYSTEM...</div>
+          </div>
+          <div className="flex justify-center space-x-1 text-[#00ff00]">
+            <div className="animate-pulse">█</div>
+            <div className="animate-pulse delay-75">█</div>
+            <div className="animate-pulse delay-150">█</div>
+          </div>
+          <div className="text-[#888888] font-mono text-xs mt-4">
+            $ auth --verify-session
+          </div>
+        </div>
       </div>
     );
   }
