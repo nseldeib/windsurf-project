@@ -30,19 +30,16 @@ export default function SignupPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex justify-center items-center">
       <div className="w-full max-w-screen-lg px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#ededed] font-mono mb-3">
-            ┌─ TERMINAL SIGNUP ─┐
-          </h1>
-          <p className="text-[#ffff00] font-mono text-lg mb-2">$ auth --register</p>
-          <div className="text-[#cccccc] font-mono">
-            <div>Initialize new operator</div>
-          </div>
-        </div>
-        
         {/* Signup Form */}
-        <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#ffff00] shadow-2xl">
+        <div className="max-w-md mx-auto">
+          <div className="bg-[#1a1a1a] p-8 rounded-lg border border-[#ffff00] shadow-2xl">
+            <div className="text-center mb-8">
+              <h2 className="text-xl font-bold text-[#ededed] font-mono mb-2">
+                ACCESS TERMINAL
+              </h2>
+              <p className="text-[#ffff00] font-mono text-sm">$ auth --register</p>
+            </div>
+            
           <form className="space-y-4" onSubmit={handleSignup}>
             {error && (
               <div className="text-[#ff0000] text-sm text-center mb-4">
@@ -90,6 +87,13 @@ export default function SignupPage() {
             <a href="/auth/login" className="text-[#ffff00] hover:text-[#ffffff] font-mono">
               &gt; Already have an account? Login
             </a>
+          </div>
+          
+          <div className="mt-8 text-center">
+            <div className="text-[#ffff00] font-mono">
+              <span className="text-[#ffff00]">$</span> <span className="text-[#888888]">Ready for input...</span>
+            </div>
+          </div>
           </div>
         </div>
       </div>
