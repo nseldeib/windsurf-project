@@ -7,11 +7,11 @@ export default function Home() {
         {/* Hero Section */}
         <div className="mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ededed] font-mono mb-4">
-            ┌─ WINDSURF PROJECT ─┐
+            ┌─ HACK BOARD ─┐
           </h1>
           <p className="text-[#00ff00] font-mono text-lg mb-3">$ system --init</p>
           <div className="text-[#cccccc] font-mono text-lg">
-            <div className="mb-2">Terminal Kanban Board</div>
+            <div className="mb-2">Terminal Task Management</div>
             <div className="text-[#888888]">Ready for deployment...</div>
           </div>
         </div>

@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture Overview
 
-This is a Next.js 15 application using the App Router with Supabase for authentication and data management.
+This is **Hack Board** - a Next.js 15 terminal-themed kanban board application using the App Router with Supabase for authentication and data management.
 
 ### Tech Stack
 - **Framework**: Next.js 15 with App Router and Turbopack

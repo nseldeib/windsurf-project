@@ -122,7 +122,7 @@ export default function DashboardPage() {
         {/* Terminal Header */}
         <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-t-lg">
           <div className="bg-[#00ff00] text-[#0a0a0a] px-3 py-2 font-mono font-bold text-sm">
-            ┌─ TERMINAL KANBAN v1.0 ─ {session.user.email} ─┐
+            ┌─ HACK BOARD v1.0 ─ {session.user.email} ─┐
           </div>
           <div className="p-3 text-[#00ff00] font-mono text-sm">
             <div className="flex justify-between items-center mb-4">
