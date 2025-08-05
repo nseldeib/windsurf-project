@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-4xl mx-auto text-center">
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-6 py-8">
+      <div className="w-full max-w-3xl mx-auto text-center">
         {/* Hero Section */}
         <div className="mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ededed] font-mono mb-4">

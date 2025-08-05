@@ -28,8 +28,8 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-lg mx-auto">
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-6 py-8">
+      <div className="w-full max-w-md mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-[#ededed] font-mono mb-3">
