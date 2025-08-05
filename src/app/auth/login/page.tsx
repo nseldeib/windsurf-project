@@ -1,8 +1,8 @@
 'use client';
 
 // Import necessary hooks and utilities
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -12,7 +12,10 @@ import { useToast } from '@/components/ui/use-toast';
  * Terminal-themed login interface for Hack Board
  * Handles user authentication with Supabase and form validation
  */
-export default function LoginPage() {
+/**
+ * Login form component with search params handling
+ */
+function LoginForm() {
   // Navigation and UI utilities
   const router = useRouter();
   const { toast } = useToast();
@@ -22,6 +25,24 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+  
+  /**
+   * Handle URL parameters for error messages and success states
+   */
+  useEffect(() => {
+    const errorParam = searchParams.get('error');
+    const messageParam = searchParams.get('message');
+    
+    if (errorParam === 'session-expired') {
+      setError('⏰ SESSION EXPIRED: Your session has timed out. Please log in again to continue.');
+    } else if (messageParam === 'check-email') {
+      toast({
+        title: "📧 Registration Successful!",
+        description: "Please check your email and click the confirmation link to activate your account.",
+      });
+    }
+  }, [searchParams, toast]);
 
   /**
    * Handle login form submission
@@ -33,19 +54,19 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      // Basic form validation
+      // Basic form validation with terminal-style messages
       if (!email || !password) {
-        throw new Error('Please fill in all fields');
+        throw new Error('⚠️ AUTHENTICATION REQUIRED: Both email and password fields must be completed');
       }
 
       if (password.length < 8) {
-        throw new Error('Password must be at least 8 characters long');
+        throw new Error('🔒 SECURITY PROTOCOL: Password must contain at least 8 characters for system access');
       }
 
       // Email format validation
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!emailRegex.test(email)) {
-        throw new Error('Please enter a valid email address');
+        throw new Error('📧 FORMAT ERROR: Please enter a valid email address (example: user@domain.com)');
       }
 
       const { error, data } = await supabase.auth.signInWithPassword({
@@ -65,10 +86,32 @@ export default function LoginPage() {
         router.push('/dashboard');
       }
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'An error occurred';
+      // Enhanced error handling with user-friendly messages
+      let errorMessage = 'SYSTEM ERROR: Unable to process authentication request';
+      
+      if (error instanceof Error) {
+        const msg = error.message.toLowerCase();
+        
+        // Map Supabase errors to human-readable messages
+        if (msg.includes('invalid') && (msg.includes('email') || msg.includes('password') || msg.includes('credentials'))) {
+          errorMessage = '🚫 ACCESS DENIED: Invalid email or password. Please check your credentials and try again.';
+        } else if (msg.includes('email not confirmed') || msg.includes('signup')) {
+          errorMessage = '📧 EMAIL VERIFICATION: Please check your email and click the confirmation link before logging in.';
+        } else if (msg.includes('too many') || msg.includes('rate') || msg.includes('limit')) {
+          errorMessage = '⏰ RATE LIMIT: Too many login attempts. Please wait a few minutes before trying again.';
+        } else if (msg.includes('network') || msg.includes('fetch') || msg.includes('connection')) {
+          errorMessage = '🌐 CONNECTION ERROR: Unable to reach authentication server. Please check your internet connection.';
+        } else if (error.message.includes('⚠️') || error.message.includes('🔒') || error.message.includes('📧')) {
+          // Keep our custom validation messages as-is
+          errorMessage = error.message;
+        } else if (error.message) {
+          errorMessage = `💻 SYSTEM MESSAGE: ${error.message}`;
+        }
+      }
+      
       setError(errorMessage);
       toast({
-        title: "Error",
+        title: "🚨 Authentication Failed",
         description: errorMessage,
         variant: "destructive",
       });
@@ -92,8 +135,12 @@ export default function LoginPage() {
             
           <form className="space-y-4" onSubmit={handleLogin}>
             {error && (
-              <div className="text-[#ff0000] text-sm mb-4 text-center">
-                {error}
+              <div className="bg-[#2a1a1a] border border-[#ff0000] rounded p-3 mb-4">
+                <div className="text-[#ff0000] text-sm font-mono text-center">
+                  <div className="mb-1">┌─ SYSTEM ALERT ─┐</div>
+                  <div className="text-left px-2">{error}</div>
+                  <div className="mt-1 text-[#888888] text-xs">└─ Check details and retry ─┘</div>
+                </div>
               </div>
             )}
             
@@ -151,5 +198,25 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+/**
+ * Main Login Page with Suspense wrapper
+ */
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+        <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-lg p-8 text-center">
+          <div className="text-[#00ff00] font-mono">
+            <div className="mb-2">┌─ ACCESS TERMINAL ─┐</div>
+            <div className="text-sm">🔄 LOADING LOGIN INTERFACE...</div>
+          </div>
+        </div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }
