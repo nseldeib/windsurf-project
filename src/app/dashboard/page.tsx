@@ -116,8 +116,8 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="terminal-app min-h-screen bg-[#0a0a0a] flex justify-center items-start">
+      <div className="dashboard-container py-6">
         
         {/* Terminal Header */}
         <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-t-lg">
@@ -182,10 +182,10 @@ export default function DashboardPage() {
         </div>
 
         {/* Kanban Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full">
           
           {/* TODO Column */}
-          <div className="bg-[#1a1a1a] border border-[#ff0000] rounded">
+          <div className="bg-[#1a1a1a] border border-[#ff0000] rounded w-full min-w-0">
             <div className="bg-[#ff0000] text-[#ffffff] px-4 py-2 font-mono font-bold">
               ┌─ TODO ({getStatusNotes('todo').length}) ─┐
             </div>
@@ -222,7 +222,7 @@ export default function DashboardPage() {
           </div>
 
           {/* IN PROGRESS Column */}
-          <div className="bg-[#1a1a1a] border border-[#ffff00] rounded">
+          <div className="bg-[#1a1a1a] border border-[#ffff00] rounded w-full min-w-0">
             <div className="bg-[#ffff00] text-[#0a0a0a] px-4 py-2 font-mono font-bold">
               ┌─ IN PROGRESS ({getStatusNotes('in-progress').length}) ─┐
             </div>
@@ -259,7 +259,7 @@ export default function DashboardPage() {
           </div>
 
           {/* DONE Column */}
-          <div className="bg-[#1a1a1a] border border-[#00ff00] rounded">
+          <div className="bg-[#1a1a1a] border border-[#00ff00] rounded w-full min-w-0">
             <div className="bg-[#00ff00] text-[#0a0a0a] px-4 py-2 font-mono font-bold">
               ┌─ DONE ({getStatusNotes('done').length}) ─┐
             </div>
