@@ -116,8 +116,8 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-4">
-      <div className="max-w-7xl mx-auto px-4">
+    <div className="min-h-screen bg-[#0a0a0a] px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full max-w-screen-lg mx-auto">
       {/* Terminal Header */}
       <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-t-lg">
         <div className="bg-[#00ff00] text-[#0a0a0a] px-3 py-2 font-mono font-bold text-sm">
@@ -181,7 +181,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Kanban Columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mt-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mt-6 items-start">
         {/* TODO Column */}
         <div className="bg-[#1a1a1a] border border-[#ff0000] rounded">
           <div className="bg-[#ff0000] text-[#ffffff] px-4 py-2 font-mono font-bold">
@@ -290,12 +290,11 @@ export default function DashboardPage() {
                 </div>
               </div>
             ))}
-          </div>
         </div>
       </div>
 
       {/* Terminal Footer */}
-      <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-b-lg p-4">
+      <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-b-lg p-4 mt-6">
         <div className="text-[#00ff00] font-mono text-sm">
           <span className="text-[#00ff00]">$</span> <span className="text-[#888888]">Status: {notes.length} total notes | Ready for input...</span>
         </div>
