@@ -31,8 +31,6 @@ html, body {
   padding-right: 1rem !important;
   display: block !important;
   position: relative !important;
-  /* DEBUG: Temporary border to see container */
-  border: 2px solid red !important;
 }
 
 @media (min-width: 640px) {

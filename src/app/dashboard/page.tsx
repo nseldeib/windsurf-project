@@ -116,7 +116,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="terminal-app min-h-screen bg-[#0a0a0a] flex justify-center items-start">
+    <div className="terminal-app min-h-screen bg-[#0a0a0a]">
       <div className="dashboard-container py-6">
         
         {/* Terminal Header */}
