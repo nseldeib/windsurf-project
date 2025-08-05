@@ -15,55 +15,9 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Terminal-specific font styling */
-.terminal-app {
-  font-family: 'Courier New', Monaco, monospace !important;
+
+/* Clean terminal styling without layout interference */
+.terminal-content {
+  font-family: 'Courier New', Monaco, monospace;
   line-height: 1.6;
-}
-
-/* Force proper centering for containers */
-.dashboard-container {
-  width: 100% !important;
-  max-width: 1200px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-  display: block !important;
-  position: relative !important;
-}
-
-@media (min-width: 640px) {
-  .dashboard-container {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  .dashboard-container {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
-  }
-}
-
-/* Fix grid alignment */
-.kanban-grid-fixed {
-  display: grid !important;
-  grid-template-columns: 1fr !important;
-  gap: 1.5rem !important;
-  width: 100% !important;
-}
-
-@media (min-width: 768px) {
-  .kanban-grid-fixed {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  .kanban-grid-fixed {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 2rem !important;
-  }
 }

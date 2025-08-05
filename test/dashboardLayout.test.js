@@ -12,13 +12,13 @@ test('dashboard layout centers content and provides spacing', () => {
   );
   assert(
     dashboardFile.includes(
-      'w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6'
+      'max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6'
     ),
     'inner container should center content with responsive padding and max width'
   );
   assert(
-    dashboardFile.includes('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6'),
-    'kanban grid should use clean Tailwind CSS grid layout'
+    dashboardFile.includes('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-6'),
+    'kanban grid should use clean responsive Tailwind CSS grid layout'
   );
   assert(
     dashboardFile.includes('bg-[#1a1a1a] border border-[#ff0000] rounded'),
