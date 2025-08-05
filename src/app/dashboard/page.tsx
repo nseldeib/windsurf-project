@@ -117,7 +117,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      <div className="terminal-content max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="terminal-content container mx-auto px-4 sm:px-6 lg:px-8 py-6">
         
         {/* Terminal Header */}
         <div className="bg-[#1a1a1a] border border-[#00ff00] rounded-t-lg">
@@ -182,7 +182,8 @@ export default function DashboardPage() {
         </div>
 
         {/* Kanban Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mt-6">
           
           {/* TODO Column */}
           <div className="bg-[#1a1a1a] border border-[#ff0000] rounded">
@@ -295,6 +296,7 @@ export default function DashboardPage() {
             </div>
           </div>
           
+          </div>
         </div>
 
         {/* Terminal Footer */}
