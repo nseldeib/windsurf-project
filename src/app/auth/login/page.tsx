@@ -1,24 +1,39 @@
 'use client';
 
+// Import necessary hooks and utilities
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
 
+/**
+ * Login Page Component
+ * 
+ * Terminal-themed login interface for Hack Board
+ * Handles user authentication with Supabase and form validation
+ */
 export default function LoginPage() {
+  // Navigation and UI utilities
   const router = useRouter();
+  const { toast } = useToast();
+  
+  // Form state management
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
 
+  /**
+   * Handle login form submission
+   * Validates form data and authenticates user with Supabase
+   */
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
     try {
+      // Basic form validation
       if (!email || !password) {
         throw new Error('Please fill in all fields');
       }
@@ -27,7 +42,7 @@ export default function LoginPage() {
         throw new Error('Password must be at least 8 characters long');
       }
 
-      // Email validation
+      // Email format validation
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!emailRegex.test(email)) {
         throw new Error('Please enter a valid email address');
