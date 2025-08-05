@@ -1,10 +1,16 @@
 import Link from 'next/link';
 
+/**
+ * Hack Board Homepage
+ * 
+ * Landing page with terminal-themed design showcasing the app
+ * and providing navigation to authentication pages
+ */
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex justify-center">
       <div className="w-full max-w-screen-lg px-4 sm:px-6 lg:px-8 py-12 text-center">
-        {/* Hero Section */}
+        {/* Hero Section - Main branding and description */}
         <div className="mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ededed] font-mono mb-4">
             ┌─ HACK BOARD ─┐
@@ -16,7 +22,7 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Auth Section */}
+        {/* Authentication Section - Login/Signup navigation */}
         <div className="max-w-md mx-auto">
           <div className="bg-[#1a1a1a] p-8 rounded-lg border border-[#00ff00] shadow-2xl">
             <div className="text-center mb-8">

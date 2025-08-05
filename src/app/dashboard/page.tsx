@@ -1,10 +1,14 @@
 'use client';
 
+// Import necessary hooks and utilities
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import type { Session } from '@supabase/supabase-js';
 
+/**
+ * Interface defining the structure of a kanban note/task
+ */
 interface Note {
   id: string;
   title: string;
@@ -13,33 +17,54 @@ interface Note {
   created_at: string;
 }
 
+/**
+ * Hack Board Dashboard - Terminal-themed Kanban Board
+ * 
+ * Main dashboard component that displays a retro terminal-style kanban board
+ * with three columns: TODO, IN PROGRESS, and DONE. Users can create, move,
+ * and delete tasks with a hacker aesthetic interface.
+ */
 export default function DashboardPage() {
+  // Navigation and authentication state
   const router = useRouter();
   const [session, setSession] = useState<Session | null>(null);
+  
+  // Kanban board state
   const [notes, setNotes] = useState<Note[]>([]);
   const [newNote, setNewNote] = useState({ title: '', content: '' });
   const [isAddingNote, setIsAddingNote] = useState(false);
 
+  /**
+   * Authentication Effect
+   * Handles initial session setup and listens for auth state changes
+   */
   useEffect(() => {
-    // Get initial session
+    // Get initial session from Supabase
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
 
-    // Listen for changes on auth state
+    // Listen for authentication state changes (login/logout)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      // Redirect to login if user logs out
       if (!session) {
         router.push('/auth/login');
       }
     });
 
+    // Cleanup subscription on component unmount
     return () => subscription.unsubscribe();
   }, [router]);
 
-  // Mock data for demo - in real app this would come from Supabase
+  /**
+   * Demo Data Effect
+   * Loads mock kanban data when user is authenticated
+   * TODO: Replace with actual Supabase database queries
+   */
   useEffect(() => {
     if (session) {
+      // Mock data for demonstration - replace with actual DB calls
       setNotes([
         {
           id: '1',
@@ -73,32 +98,51 @@ export default function DashboardPage() {
     }
   }, [session]);
 
+  /**
+   * Handle user logout
+   * Signs out from Supabase and redirects to login page
+   */
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.push('/auth/login');
   };
 
+  /**
+   * Add new task to the kanban board
+   * Creates a new note with TODO status and resets the form
+   */
   const addNote = () => {
+    // Validate that both title and content are provided
     if (newNote.title.trim() && newNote.content.trim()) {
       const note: Note = {
-        id: Date.now().toString(),
+        id: Date.now().toString(), // Simple ID generation - use UUID in production
         title: newNote.title,
         content: newNote.content,
-        status: 'todo',
+        status: 'todo', // New tasks start in TODO column
         created_at: new Date().toISOString(),
       };
+      
+      // Add to notes array and reset form
       setNotes([...notes, note]);
       setNewNote({ title: '', content: '' });
       setIsAddingNote(false);
     }
   };
 
+  /**
+   * Move task between kanban columns
+   * Updates the status of a specific note
+   */
   const moveNote = (noteId: string, newStatus: 'todo' | 'in-progress' | 'done') => {
     setNotes(notes.map(note => 
       note.id === noteId ? { ...note, status: newStatus } : note
     ));
   };
 
+  /**
+   * Delete task from kanban board
+   * Removes note from the notes array
+   */
   const deleteNote = (noteId: string) => {
     setNotes(notes.filter(note => note.id !== noteId));
   };
@@ -111,6 +155,10 @@ export default function DashboardPage() {
     );
   }
 
+  /**
+   * Filter notes by status for kanban columns
+   * Returns array of notes matching the specified status
+   */
   const getStatusNotes = (status: 'todo' | 'in-progress' | 'done') => {
     return notes.filter(note => note.status === status);
   };

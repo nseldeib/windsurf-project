@@ -1,8 +1,19 @@
+/**
+ * Toast Notification Components
+ * 
+ * Customized toast system for Hack Board with terminal-friendly styling
+ * Based on Radix UI primitives with fixed positioning to prevent layout interference
+ */
+
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * Toast styling variants with terminal-friendly animations
+ * Configured to slide in from top and not interfere with main layout
+ */
 const toastVariants = cva(
   "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-4 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[swipe=end]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full",
   {
