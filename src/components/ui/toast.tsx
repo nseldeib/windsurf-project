@@ -61,12 +61,13 @@ const ToastClose = React.forwardRef<HTMLButtonElement, React.ComponentPropsWitho
 ToastClose.displayName = "ToastClose"
 
 const ToastProvider = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<"div">>(({ className, children, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("fixed top-4 right-4 z-[100] flex max-h-screen max-w-[420px] flex-col gap-2 pointer-events-none", className)}
-    {...props}
-  >
+  <div style={{display: 'contents'}}>
     {children}
+    <div
+      ref={ref}
+      className={cn("fixed top-4 right-4 z-[100] flex max-h-screen max-w-[420px] flex-col gap-2 pointer-events-none", className)}
+      {...props}
+    />
   </div>
 ))
 ToastProvider.displayName = "ToastProvider"
